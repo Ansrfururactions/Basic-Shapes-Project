@@ -12,9 +12,10 @@ public:
 	
 	string getname() const { return name; };
 	double getarea() const { return area; };
-	void setname();
-	void setarea();
-	virtual double calcArea() = 0;
+	void setname(string name);
+	void setarea(double area);
+	virtual void calcArea() = 0;
+	virtual ~BasicShapes();
 };
 
 
@@ -30,10 +31,11 @@ public:
 	double getX() const { return xcenter; };
 	double getY() const { return ycenter; };
 	double getRadius() const { return radius; };
-	double calcArea() override;
+	void calcArea() override;
+	~circle();
 };
 
-class rectangle : BasicShapes {
+class rectangle : public BasicShapes {
 private:
 	double length;
 	double width;
@@ -42,13 +44,17 @@ public:
 
 		double getLength() const { return length; };
 		double getWidth() const { return width;  };
+		void calcArea() override;
+		~rectangle();
 };
 
 class square : public rectangle {
 private:
 	double side;
+
 public:
 	square(double s, string n = "square");
 	
 	double getSide() const { return side; };
+	~square();
 };
